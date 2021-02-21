@@ -1,8 +1,8 @@
 import User from '../models/user.model';
 import extend from 'lodash/extend';
-import errorHandler from './error.controller';
+import errorHandler from './../helpers/dbErrorHandler';
 
-const create = async (req, res, next) => {
+const create = async (req, res) => {
     const user = new User(req.body);
     try {
         await user.save();
@@ -16,9 +16,9 @@ const create = async (req, res, next) => {
     }
 }
 
-const list = (req, res) => {
+const list = async (req, res) => {
     try {
-        let users = await User.find().select('name email created');
+        let users = await User.find().select('name email created'); //aqui agregar 'updated' despues de 'email'
         res.json(users);
     } catch (err) {
         return res.status(400).json({
@@ -27,7 +27,7 @@ const list = (req, res) => {
     }
 }
 
-const userById = (req, res, next, id) => {
+const userById = async (req, res, next, id) => {
     try {
         let user = await User.findById(id);
         if (!user) {
@@ -50,7 +50,7 @@ const read = (req, res) => {
     return res.json(req.profile);
 }
 
-const update = (req, res, next) => { 
+const update = async (req, res) => { 
     try {
         let user = req.profile;
         user = extend(user, req.body); //¿Que hace 'extend()'?
@@ -66,7 +66,7 @@ const update = (req, res, next) => {
     }
 }
 
-const remove = (req, res, next) => { 
+const remove = async (req, res) => { 
     try {
         let user = req.profile;
         let deletedUser = await user.remove();
