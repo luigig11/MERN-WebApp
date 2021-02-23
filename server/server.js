@@ -15,10 +15,12 @@ app.listen(config.port, (err) => {
 console.log("Estableciendo conexion a base de datos")
 //mongoose.Promise = global.Promise --esto es para mongoose por debajo de 5x
 mongoose.connect(config.mongoUri, {
+    
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 })
+
 mongoose.connection.on('error', () => {
     throw new Error(`unable to connect to database: ${mongoUri}`)
 })
