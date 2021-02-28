@@ -33,8 +33,11 @@ const signin = async (req, res) => {
     }
 }
 
-const signout = (res, req) => { 
-    res.clearCookie('t');
+//No funciona :(
+const signout = (req, res) => { 
+    console.log('Entramos a la funcion clear cookie')
+    //console .log(res)
+    res.clearCookie("t")    
     return res.status('200').json({
         message: 'signed out'
     });
@@ -47,7 +50,11 @@ const requireSignin = expressJwt({
 })
 
 const hasAuthorization = (req, res, next) => { 
-    const authorized = req.profile && req.auth && req.profile._id === req.auth._id;
+    const authorized = req.profile && req.auth && req.profile._id == req.auth._id; //Aquí se hace solo la comparacion por valor porque req.profile._id y req.auth._id no son del mismo tipo
+    console.log(req.profile)
+    console.log(req.auth)
+    console.log(req.profile._id)
+    console.log(req.auth._id)
     if (!(authorized)) {
         return res.status('403').json({
             error: 'User is not authorized'
