@@ -10,6 +10,7 @@ yarn-error.log
 #Imagenes
 *.jpg
 *.png
+*.jpeg
 
 #dist
 dist/
