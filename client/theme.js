@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 import { pink } from '@material-ui/core/colors'
 
 const theme = createMuiTheme({
     typography: {
-        //useNextVariants: true, //Esto en la nueva version de MUI se puede remover
+        useNextVariants: true, 
     },
     palette: {
         primary: {
@@ -25,5 +25,4 @@ const theme = createMuiTheme({
     }
 })
 
-export default theme;
-
+export default theme

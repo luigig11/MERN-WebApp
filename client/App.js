@@ -1,20 +1,20 @@
 import React from 'react';
 import MainRouter from './MainRouter';
-import {BrowserRouter} from 'react-router-dom';
-import {ThemeProvider} from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
-import {hot} from 'react-hot-loader'
+import { hot } from 'react-hot-loader'
 
 const App = () => {
     return (
-        <div>
-            <h1>Hola Mundo desde el componente Home</h1>
-        </div>
-        /* <BrowserRouter>
+        /* <div>
+            <h1>Hola Mundo desde el componente App</h1>
+        </div> */
+        <BrowserRouter>
             <ThemeProvider theme={theme}>
                 <MainRouter />
             </ThemeProvider>
-        </BrowserRouter> */
+        </BrowserRouter>
     );
 }
 
