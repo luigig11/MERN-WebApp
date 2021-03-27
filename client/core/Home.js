@@ -4,8 +4,8 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-import GuapaImg from './../assets/images/Guapa.jpg'
-//import sakuraImg from './../assets/images/digital-draw-of-sakura.jpeg'
+//import GuapaImg from './../assets/images/Guapa.jpg'
+import courageImg from './../assets/images/digital-draw-of-courage.png'
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.openTitle
     },
     media: {
-        minHeight: 800
-        /* minHeight: 400 */
+        /* minHeight: 800 */
+        minHeight: 400
     }
 }))
 
@@ -36,8 +36,8 @@ const Home = () => {
             <Typography variant='h6' className={classes.title}>
                 Home Page
             </Typography>
-            {/* <CardMedia className={classes.media} image={unicornbikeImg} title='Unicorn Bicycle' /> */}
-            <CardMedia className={classes.media} image={GuapaImg} title='Guapa' />
+            <CardMedia className={classes.media} image={courageImg} title='courage' />
+            {/* <CardMedia className={classes.media} image={GuapaImg} title='Guapa' /> */}
             <CardContent>
                 <Typography variant={'body2'} component='p'>
                     Welcome to the MERN Skeleton Home Page
