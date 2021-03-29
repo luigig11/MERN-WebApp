@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 //import GuapaImg from './../assets/images/Guapa.jpg'
 import courageImg from './../assets/images/digital-draw-of-courage.png'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -43,7 +44,9 @@ const Home = () => {
                     Welcome to the MERN Skeleton Home Page
                 </Typography>
             </CardContent>
+            <Link to="/users">Users</Link>
         </Card>
+        
 
     )
 }
