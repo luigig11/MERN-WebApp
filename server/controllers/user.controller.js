@@ -10,8 +10,10 @@ const create = async (req, res) => {
             message: "Succesfully signed up"
         });
     } catch (err) {
+        /* console.log(err) */
         return res.status(400).json({
-            err: errorHandler.getErrorMessage(err)
+            error: errorHandler.getErrorMessage(err)
+            
         });
     }
 }

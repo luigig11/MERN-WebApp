@@ -1,33 +1,33 @@
-import {create} from './api-user'
+import { create } from './api-user'
 import React, { useState } from 'react'
 import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogTitle, Icon, makeStyles, TextField, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     card: {
-      maxWidth: 600,
-      margin: 'auto',
-      textAlign: 'center',
-      marginTop: theme.spacing(5),
-      paddingBottom: theme.spacing(2)
+        maxWidth: 600,
+        margin: 'auto',
+        textAlign: 'center',
+        marginTop: theme.spacing(5),
+        paddingBottom: theme.spacing(2)
     },
     error: {
-      verticalAlign: 'middle'
+        verticalAlign: 'middle'
     },
     title: {
-      marginTop: theme.spacing(2),
-      color: theme.palette.openTitle
+        marginTop: theme.spacing(2),
+        color: theme.palette.openTitle
     },
     textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 300
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 300
     },
     submit: {
-      margin: 'auto',
-      marginBottom: theme.spacing(2)
+        margin: 'auto',
+        marginBottom: theme.spacing(2)
     }
-  }))
+}))
 
 const Signup = () => {
     const classes = useStyles();
@@ -39,37 +39,20 @@ const Signup = () => {
         error: ''
     });
 
-    //Forma del handleChange segun el libro:
-    const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value })
-    }
+    //Forma del handleChange segun el libro: si lo hago de esta forma tengo que pasar el parámetro 'name' en el evento del textinput onChange
+    /*  const handleChange = name => event => {
+         console.log(event.target.value)
+         setValues({ ...values, [name]: event.target.value })
+     } */
 
-    //Forma del handleChange en que lo vi la antes de percatarme que no pasaba el evento
-    /* const handleChange = name => {
-        setValues({ ...values, [name]: event.target.value })
-    } */
 
     //Forma del handleChange con solo la variable 'e' del evento
-    //forma 1
-        /* const handleChange = e => {
-            setValues({ ...values, [e.target.name]: e.target.value })
-        } */
 
-    //forma 2
-        /* const handleChange = e => {
-            setValues({ ...values, 
-                name: e.target.value */
-                /* values.name: e.target.value */ 
-                /* [values.name]: e.target.value */
-           /*  })
-        }  */
-        
-    //Forma del handleChange pasandole name y evento en una variable
-    /* const handleChange = (name, e) => {
-        setValues({ ...values, 
-            name: e.target.values
-        })
-    } */
+    const handleChange = e => {
+        console.log(e.target.value)
+        setValues({ ...values, [e.target.id]: e.target.value })
+    }
+
 
     const clickSubmit = () => {
         const user = {
@@ -77,15 +60,19 @@ const Signup = () => {
             email: values.email || undefined,
             password: values.password || undefined
         }
+        console.log(user)
 
         create(user).then((data) => {
+            /* console.log(data) */
             if (data.error) {
-                setValues({...values, error: data.error})
+                /* console.log(data) */
+                setValues({ ...values, error: data.error })
             } else {
-                setValues({...values, error: '', open: true})
+                /* console.log(data) */
+                setValues({ ...values, error: '', open: true })
             }
         })
-
+        
     }
 
     return (
@@ -95,30 +82,43 @@ const Signup = () => {
                     <Typography variant='h6' className={classes.title}>
                         Sign Up
                     </Typography>
-                    <TextField 
-                        id='name' 
-                        label='Name' 
-                        className={classes.textField} 
-                        value={values.name} 
-                        onChange={handleChange('name')}
+                    <TextField
+                        id='name'
+                        label='Name'
+                        className={classes.textField}
+                        value={values.name}
+                        /* onChange={handleChange('name')} */
+                        onChange={handleChange}
                         margin='normal'
                     />
-                    <br/>
-                    <TextField 
-                        id='email' 
+                    <br />
+                    <TextField
+                        id='email'
                         label='Email'
-                        type='email' 
-                        className={classes.textField} 
-                        value={values.email} 
-                        onChange={handleChange('email')}
+                        type='email'
+                        className={classes.textField}
+                        value={values.email}
+                        /* onChange={handleChange('email')} */
+                        onChange={handleChange}
                         margin='normal'
                     />
-                    <br/>
+                    <br />
+                    <TextField
+                        id='password'
+                        label='password'
+                        type='password'
+                        className={classes.textField}
+                        value={values.password}
+                        /* onChange={handleChange('email')} */
+                        onChange={handleChange}
+                        margin='normal'
+                    />
+                    <br />
                     {
-                        values.error && ( 
+                        values.error && (
                             <Typography component='p' color='error'>
-                                <Icon 
-                                    color='error' 
+                                <Icon
+                                    color='error'
                                     className={classes.error}
                                 >
                                     error
@@ -129,9 +129,9 @@ const Signup = () => {
                     }
                 </CardContent>
                 <CardActions>
-                    <Button 
-                        color='primary' 
-                        variant='contained' 
+                    <Button
+                        color='primary'
+                        variant='contained'
                         onClick={clickSubmit}
                         className={classes.submit}
                     >
