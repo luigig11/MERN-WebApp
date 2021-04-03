@@ -47,6 +47,7 @@ const Home = () => {
             <Link to="/users">Users</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/signin">Sign In</Link>
+            <Link to="/user/60346329a921ad38486459be">User Luis</Link>
         </Card>
         
 
