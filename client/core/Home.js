@@ -46,6 +46,7 @@ const Home = () => {
             </CardContent>
             <Link to="/users">Users</Link>
             <Link to="/signup">Sign Up</Link>
+            <Link to="/signin">Sign In</Link>
         </Card>
         
 
