@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import auth from '../auth/auth-helper';
 import {read} from './api-user'
-/* import DeleteUser from './DeleteUser' */
+import DeleteUser from './DeleteUser'
 
 const useStyles = makeStyles( theme => ({
     root: theme.mixins.gutters({
@@ -75,7 +75,7 @@ const Profile = ({match}) => {
                                         <Edit />
                                     </IconButton>
                                 </Link>
-                                {/* <DeleteUser userId={user._id} /> */}
+                                <DeleteUser userId={user._id} />
                             </ListItemSecondaryAction>
                         )
                     }
