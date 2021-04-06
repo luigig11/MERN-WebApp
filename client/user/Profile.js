@@ -31,18 +31,18 @@ const Profile = ({match}) => {
         read({userId: match.params.userId}, {t: jwt.token}, signal)
             .then((data) => {
                 //Descomentar esto cuando ya se vaya a utilizar el modulo completo
-                /* if (data && data.error) {
+                if (data && data.error) {
                     setRedirectToSignin(true);
                 } else {
                     setUser(data);
-                } */
+                }
                 //mock
-                const user = {
+                /* const user = {
                     name: 'Luis',
                     email: 'luis@gmail.com',
                     created: '11/09/1995'
                 }
-                setUser(user);
+                setUser(user); */
             })
         return function cleanup() {
             abortController.abort();
