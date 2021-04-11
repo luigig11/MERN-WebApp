@@ -43,11 +43,7 @@ const Home = () => {
                 <Typography variant={'body2'} component='p'>
                     Welcome to the MERN Skeleton Home Page
                 </Typography>
-            </CardContent>
-            <Link to="/users">Users</Link>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/signin">Sign In</Link>
-            <Link to="/user/60346329a921ad38486459be">User Luis</Link>
+            </CardContent>            
         </Card>
         
 

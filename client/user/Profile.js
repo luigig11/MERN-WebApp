@@ -28,9 +28,12 @@ const Profile = ({match}) => {
         const abortController = new AbortController();
         const signal = abortController.signal;
         const jwt = auth.isAuthenticated()
+        console.log('[Profije] jwt: ', jwt);
+        console.log('[Profije] match: ', match);
         read({userId: match.params.userId}, {t: jwt.token}, signal)
             .then((data) => {
                 //Descomentar esto cuando ya se vaya a utilizar el modulo completo
+                console.log('[Profije] data: ', data);
                 if (data && data.error) {
                     setRedirectToSignin(true);
                 } else {

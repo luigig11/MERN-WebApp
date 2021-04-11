@@ -36,7 +36,7 @@ const Users = () => {
         const signal = abortController.signal;
 
         list(signal).then((data) => {
-            console.log(`[Users.list] data: ${{ ...data }}`)
+            console.log('[Users.list] data: ', data);
             if (data && data.error) {
                 console.log(data.error)
             } else {
@@ -56,7 +56,7 @@ const Users = () => {
             <List dense>
                 {
                     users.map((item, i) => {
-                        return <Link to={'/user/" + item._id'} key={i}>
+                        return <Link to={'/user/' + item._id} key={i}>
                             <ListItem button>
                                 <ListItemAvatar>
                                     <Avatar>

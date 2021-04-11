@@ -9,6 +9,14 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import devBundle from './devBundle'; //this is just for development
 import path from 'path';
+//Importando los modulos para el server-side rendering
+import React from 'react';
+import ReactDomServer from 'react-dom/server';
+import StaticRouter from 'react-router-dom/StaticRouter';
+import MainRouter from './../client/MainRouter';
+import {ServerStyleSheets, ThemeProvider} from '@material-ui/styles';
+import theme from './../client/theme';
+
 
 const CURRENT_WORKING_DIR = process.cwd()
 
@@ -29,9 +37,36 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use('/', authRoutes);
 app.use('/', userRoutes);
 
+/* Se sustituye esto por el metodo del server-side rendering
 app.get('/', (req, res) => {
     res.status(200).send(Template())
-});
+}); */
+
+//Server-side rendering: Generating CSS and markup
+app.get('*', (req,res) => {
+    const sheets = new ServerStyleSheets();
+    const context = {};
+    const markup = ReactDomServer.renderToString(
+        sheets.collect(
+            <StaticRouter location={req.url} context={context}>
+                <ThemeProvider theme={theme}>
+                    <MainRouter />
+                </ThemeProvider>
+            </StaticRouter>
+        )
+    )
+
+    if (context.url) {
+        return res.redirect(303, context.url)
+    }
+
+    const css = sheets.toString();
+    res.status(200).send(Template({
+        markup: markup,
+        css: css
+    }))
+
+})
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {

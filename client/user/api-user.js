@@ -27,6 +27,8 @@ const list = async (signal) => {
 }
 
 const read = async (params, credentials, signal) => {
+    console.log('[api-user] params: ', params);
+    console.log('[api-user] credentials: ', credentials);
     try {
         let response = await fetch('/api/users/' + params.userId, {
             method: 'GET',
@@ -37,6 +39,7 @@ const read = async (params, credentials, signal) => {
                 'Authorization': 'Bearer ' + credentials.t
             }
         });
+        console.log('[api-user] response: ', response);
         return await response.json();
     } catch (err) {
         console.log(err);
